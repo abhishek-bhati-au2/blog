@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/public/css/styles.css" />
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <title>Blog</title>
+</head>
+<body>
+    
+
+
+    <div class="container">
+        <h1 class="mb-4">Blog Articles</h1>
+        <a href="/articles/new" class="btn btn-success">New Article</a>
+        
+        <% articles.forEach( article => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title"><%= article.title %></h4>
+                    <div class="card-subtitle text-muted mb-2">
+                        <%= article.date.toLocaleDateString() %>
+                    </div>
+                    <div class="card-text mb-2">
+                        <%= article.description %>
+                    </div>
+                    <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
+                    <a href="/articles/edit/<%= article.id%>" class="btn btn-info">Edit</a>
+                    <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+             
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
